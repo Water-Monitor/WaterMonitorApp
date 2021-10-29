@@ -1,0 +1,20 @@
+<mat-card class="no-background">
+    <mat-card-header>
+        <mat-card-title>
+            Todays water usage
+        </mat-card-title>
+        <mat-card-subtitle>
+            Last 7 days<br />
+            In total
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <x-chartist [type]="type" [data]="data" [options]="options" [events]="events"></x-chartist>
+        <div>
+            <button mat-raised-button color="primary">Last week</button>
+            <button mat-raised-button color="primary">1 Month</button>
+            <button mat-raised-button color="primary">6 Month</button>
+            <button mat-raised-button color="primary">1 Year</button>
+        </div>
+    </mat-card-content>
+</mat-card>
