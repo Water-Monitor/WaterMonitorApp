@@ -4,5 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  get_water_usage_endpoint: "http://localhost:9093/water-monitor-service/water-usage/v1.0/"
 };
