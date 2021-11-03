@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  get_water_usage_endpoint: "http://localhost:9093/water-monitor-service/water-usage/v1.0/"
+  get_water_usage_endpoint: "http://localhost:9093/water-monitor-service/water-usage/v1.0/",
+  get_random_tip_endpoint: "http://localhost:9093/water-monitor-service/tip/v1.0/",
 };

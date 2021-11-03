@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TipDto } from 'src/models/TipDto';
+import { TipService } from 'src/services/Tip.service';
 
 @Component({
   selector: 'app-tip-of-the-day',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tip-of-the-day.component.css']
 })
 export class TipOfTheDayComponent implements OnInit {
+  tip: TipDto = new TipDto(-1, "No Tip", "No tip available");
 
-  constructor() { }
+  constructor(private tipService: TipService) { }
 
   ngOnInit(): void {
+    this.tipService.getRandomTip().subscribe((data) => {
+      this.tip = data;
+    });
   }
 
 }
