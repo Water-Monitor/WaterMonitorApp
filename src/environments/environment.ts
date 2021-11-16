@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  get_water_usage_endpoint: "http://localhost:9093/water-monitor-service/water-usage/v1.0/"
+  get_water_usage_endpoint: "http://localhost:9093/water-monitor-service/water-usage/v1.0/",
+  login_endpoint: "not-implemented",
+  get_users_endpoint: "not-implemented",
 };
