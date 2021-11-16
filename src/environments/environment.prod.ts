@@ -3,4 +3,5 @@ export const environment = {
   get_water_usage_endpoint: "not-implemented",
   login_endpoint: "not-implemented",
   get_users_endpoint: "not-implemented",
+  get_random_tip_endpoint: "not-implemented",
 };
