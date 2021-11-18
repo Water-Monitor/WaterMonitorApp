@@ -39,7 +39,7 @@ export const UserRoutes: Routes = [
   {
     path: '',
     component: FullComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     // data: { roles: [Role.User, Role.Admin] },
     children: [
       {
