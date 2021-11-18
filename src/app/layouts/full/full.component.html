@@ -1,5 +1,5 @@
-<div class="main-container"> 
-    <mat-toolbar color="primary" class="topbar telative">
+<div class="main-container">
+    <!-- <mat-toolbar color="primary" class="topbar telative">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">
                 <b>
@@ -16,15 +16,18 @@
         </button>
         <span fxFlex></span>
         <app-header></app-header>
-    </mat-toolbar>
+    </mat-toolbar> -->
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
-        <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches"  >
-                <app-sidebar></app-sidebar>
-        </mat-sidenav>
+        <!-- <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'"
+            fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches">
+            <app-sidebar></app-sidebar>
+        </mat-sidenav> -->
         <mat-sidenav-content class="page-wrapper">
-                <div class="page-content">
-                        <router-outlet><app-spinner></app-spinner></router-outlet>
-                </div>    
+            <div class="page-content">
+                <router-outlet>
+                    <app-spinner></app-spinner>
+                </router-outlet>
+            </div>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>
