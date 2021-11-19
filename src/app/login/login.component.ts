@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
     submitted = false;
 
     constructor(
-        //public form: null,
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -27,9 +26,9 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.yform = this.formBuilder.group({
-            username: ['', Validators.required, Validators.pattern(' ^[a-z0-9_-]$ '), Validators.minLength(8), Validators.maxLength(21)],
-            password: ['', Validators.required, Validators.pattern(' ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).$ '), 
-            Validators.minLength(8), Validators.maxLength(21)]
+            username: ['', [Validators.required, Validators.pattern(' ^[a-z0-9_-]$ '), Validators.minLength(8), Validators.maxLength(21)]],
+            password: ['', [Validators.required, Validators.pattern(' ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).$ '), 
+            Validators.minLength(8), Validators.maxLength(21)]]
         });
     }
 
@@ -37,7 +36,7 @@ export class LoginComponent implements OnInit {
     get f() { return this.yform.controls; }
 
     onSubmit() {
-        //this.submitted = true;
+        this.submitted = true;
         console.log(this.yform.value);
 
         // reset alerts on submit
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
         // stop here if form is invalid
         if (this.yform.invalid) {
           console.log("triggered");
-            //return;
+            return;
         }
 
         this.loading = true;
