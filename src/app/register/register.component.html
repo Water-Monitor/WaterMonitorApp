@@ -1,0 +1,46 @@
+<body>
+<form name="myform" ng-app="myApp"  ng-controller="validateCtrl" novalidate>
+
+  <h2 class="title">Registration Info</h2>
+  <label>Username<br></label>
+  <input type="Username" placeholder="Username"  ng-model= "username"name="Username"maxlength="21" required ><br>
+  <span ng-show="myform.username.$touched && myform.username.$invalid">The username is required.</span>
+  <label>Password<br></label>
+  <input type="Password" placeholder="Password" name="Password "maxlength="21" minlength="8" required ><br>
+  <label>Confirm Passsword<br></label>
+
+  <input type="ConfirmPassword" placeholder="ConfirmPassword" name="ConfirmPassword" maxlength="21" minlength="8" required><br>
+  <label>Email</label><br>
+  <input type="email" placeholder="Email" ng-model="email"name="email" required>
+<span style="color:red" ng-show="myform.email.$dirty && myform.email.$invalid">
+<span ng-show="myform.email.$error.required">Email is required.</span>
+<span ng-show="myform.email.$error.email">Invalid email address.</span>
+</span>
+
+  <br>
+  <button mat-raised-button color="primary"> Confirm Email</button><br>
+  <label>ENTER OTP </label>
+  <div class="container">
+  <div class=" Ishow" >
+    <input type="text" id="OTP" name ="1otp" id='1st' maxlength="1" onkeyup="clickEvent(this,'sec')">
+    <input type="text" name ="2otp" id='sec' maxlength="1" onkeyup="clickEvent(this,'third')">
+    <input type="text" name ="3otp"  id='third' maxlength="1" onkeyup="clickEvent(this,'fourth')">
+    <input type="text" name ="4otp" id='fourth' maxlength="1" >
+  </div>
+  </div>
+   <button mat-raised-button color="primary"> REGISTER  </button>
+
+
+</form>
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('validateCtrl', function($scope) {
+      $scope.username = 'John Doe';
+      $scope.email = 'john.doe@gmail.com';
+  });
+  </script>
+
+</body>
+
+
+
