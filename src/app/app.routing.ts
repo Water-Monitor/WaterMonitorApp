@@ -11,7 +11,7 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/todays-water-usage',
         pathMatch: 'full'
       },
       {
@@ -39,7 +39,7 @@ export const UserRoutes: Routes = [
   {
     path: '',
     component: FullComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     // data: { roles: [Role.User, Role.Admin] },
     children: [
       {
