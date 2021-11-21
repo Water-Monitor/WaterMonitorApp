@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { AppRoutes } from './app.routing';
+import { AdminRoutes, AppRoutes, UserRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -17,6 +17,7 @@ import { DemoMaterialModule } from './demo-material-module';
 
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,9 @@ import { SpinnerComponent } from './shared/spinner.component';
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
+    IonicStorageModule.forRoot(),
     SharedModule,
-    RouterModule.forRoot(AppRoutes)
+    [RouterModule.forRoot(AppRoutes), RouterModule.forRoot(UserRoutes), RouterModule.forRoot(AdminRoutes)],
   ],
   providers: [
     {
