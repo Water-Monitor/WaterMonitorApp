@@ -9,12 +9,14 @@ import { NavigatorService } from './navigator.service';
 import { PopUpService } from './pop-up.service';
 import { UserService } from './user.service';
 import { Storage } from '@ionic/storage';
+import { Token } from '@angular/compiler/src/ml_parser/lexer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   private static HAS_LOGGED_IN = "HAS_LOGGED_IN";
+  private static TOKEN = "TOKEN";
   private authState: any;
 
   constructor(
@@ -36,34 +38,41 @@ export class AuthenticationService {
 
   async login(login: Login) {
     // this.popUpService.presentLoading().then(() => {
+console.info("HALLO");
+    this.http.post<Token>(environment.login_endpoint, login)
+      .pipe(response => {
+        console.info("login response received: " + JSON.stringify(response));
+        // this.popUpService.dismissLoading();
+        return response;
+      })
+      .subscribe((token) => {
+        //Mock user
+          let user = new User(1, "Kees", "kaas", [Role.User]);
+          if (user != null && user.id > 0) {
+            this.storage.set(AuthenticationService.TOKEN, token).then(() => {
+              console.log(JSON.stringify(token));
 
-    // this.http.post<User>(environment.login_endpoint, login)
-    //   .pipe(response => {
-    //     console.info("login response received: " + JSON.stringify(response));
-    //     this.popUpService.dismissLoading();
-    //     return response;
-    //   })
-    //   .subscribe((user) => {
-    //     if (user != null && user.id > 0) {
-    //       this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
-    //         console.log(JSON.stringify(user));
-    //         this.userService.setLoggedInUser(user);
-    //         this.authState.next(true);
-    //         this.navigatorService.toHomePage();
-    //       });
-    //     }
-    //     else {
-    //       this.popUpService.presentAlert(`Inlogpoging mislukt`, `De combinatie gebruikersnaam en wachtwoord is onjuist`);
-    //     }
-    //   });
+              this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
+              console.log(JSON.stringify(user));
+              this.userService.setLoggedInUser(user);
+              this.authState.next(true);
+              this.navigatorService.toHomePage();
+            });
+          });
+        }
+        else {
+          this.popUpService.presentAlert(`Inlogpoging mislukt`, `De combinatie gebruikersnaam en wachtwoord is onjuist`);
+        }
+      });
     // });
-    this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
-      let user = new User(1, "Kees", "kaas", [Role.User]);
-      console.log(JSON.stringify(user));
-      this.userService.setLoggedInUser(user);
-      this.authState.next(true);
-      this.navigatorService.toHomePage();
-    });
+
+    // this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
+    //   let user = new User(1, "Kees", "kaas", [Role.User]);
+    //   console.log(JSON.stringify(user));
+    //   this.userService.setLoggedInUser(user);
+    //   this.authState.next(true);
+    //   this.navigatorService.toHomePage();
+    // });
   }
 
   async logout() {
