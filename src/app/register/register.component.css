@@ -23,12 +23,19 @@ form
   display: flex;
   justify-content: center;
 }
-input.ng-valid {
-  background-color: lightgreen;
-}
+input.ng-invalid
+{
+  border-radius: 10px solid red;
 
-input.ng-invalid {
-  background-color: red;
+}
+.err
+{
+  color: red;
+}
+input.ng-valid
+{
+  border-radius: 10px solid green;
+
 }
 input[name="1otp"]
 {
@@ -93,6 +100,7 @@ input[name="5otp"]
 
 
 }
+
 
 
 

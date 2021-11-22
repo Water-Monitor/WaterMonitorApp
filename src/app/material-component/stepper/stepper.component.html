@@ -8,13 +8,13 @@
 			<mat-card-content>
 				<mat-card-title>Stepper</mat-card-title>
 				<mat-card-subtitle>Check the <code class=""><a href="https://material.angular.io/components/stepper/overview">Official Component</a></code></mat-card-subtitle>
-				<button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button>
+				<button mat-raised-button (click)="isLinear = true" id="toggle-linear">Water monitor registration questions</button>
 				<mat-horizontal-stepper [linear]="isLinear">
 					<mat-step [stepControl]="firstFormGroup">
 						<form [formGroup]="firstFormGroup">
-							<ng-template matStepLabel>Fill out your name</ng-template>
+							<ng-template matStepLabel>  How many people do you live with?</ng-template>
 							<mat-form-field>
-								<input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+								<input matInput placeholder="No of people" formControlName="firstCtrl" required>
 							</mat-form-field>
 							<div>
 								<button mat-raised-button color="warn" matStepperNext>Next</button>
@@ -28,6 +28,11 @@
 								<input matInput placeholder="Address" formControlName="secondCtrl" required>
 							</mat-form-field>
 							<div>
+                <ng-template matStepLabel>Do you have a swimming pool yes/no?</ng-template>
+							<mat-form-field>
+								<input matInput placeholder="Yes / No" formControlName="secondCtrl" required>
+							</mat-form-field>
+							<div>
 								<button mat-raised-button color="accent" matStepperPrevious>Back</button>
 								<button mat-raised-button color="warn" matStepperNext>Next</button>
 							</div>
@@ -35,7 +40,7 @@
 					</mat-step>
 					<mat-step>
 						<ng-template matStepLabel>Done</ng-template>
-						You are now done.
+						Thank you for filling this in.
 						<div>
 							<button mat-raised-button color="accent" matStepperPrevious>Back</button>
 						</div>
@@ -112,20 +117,32 @@
 				<mat-horizontal-stepper labelPosition="bottom" #stepperposition>
 				    <mat-step [stepControl]="positionfirstFormGroup">
 				        <form [formGroup]="positionfirstFormGroup">
-				            <ng-template matStepLabel>Fill out your name</ng-template>
+				            <ng-template matStepLabel>How many people do you live with</ng-template>
 				            <mat-form-field>
-				                <input matInput placeholder="Last name, First name" formControlName="positionfirstCtrl" required>
+				                <input matInput placeholder="No of people" formControlName="positionfirstCtrl" required>
 				            </mat-form-field>
 				            <div>
 				                <button mat-raised-button matStepperNext color="accent">Next</button>
 				            </div>
 				        </form>
 				    </mat-step>
-				    <mat-step [stepControl]="positionsecondFormGroup" optional>
+				    <mat-step [stepControl]="positionsecondFormGroup" required>
 				        <form [formGroup]="positionsecondFormGroup">
 				            <ng-template matStepLabel>Fill out your address</ng-template>
 				            <mat-form-field>
 				                <input matInput placeholder="Address" formControlName="positionsecondCtrl" required>
+				            </mat-form-field>
+				            <div class="button-row">
+				                <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+				       	 	<button mat-raised-button color="accent" matStepperNext>Next</button>
+				            </div>
+				        </form>
+				    </mat-step>
+            <mat-step [stepControl]="positionsecondFormGroup" required>
+				        <form [formGroup]="positionsecondFormGroup">
+				            <ng-template matStepLabel>Do you have an swimming pool?</ng-template>
+				            <mat-form-field>
+				                <input matInput placeholder="yes/no" formControlName="positionsecondCtrl" required>
 				            </mat-form-field>
 				            <div class="button-row">
 				                <button mat-raised-button color="primary" matStepperPrevious>Back</button>

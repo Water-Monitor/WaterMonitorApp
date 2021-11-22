@@ -7,6 +7,11 @@ import { ChartistModule } from 'ng-chartist';
 import { RegisterComponent } from './register.component';
 import { RegisterRoutes } from './register.routing';
 import { MaterialComponentsModule } from '../material-component/material.module';
+import {ReactiveFormsModule, FormsModule}from '@angular/forms';
+
+
+
+
 
 @NgModule({
   imports: [
@@ -15,7 +20,12 @@ import { MaterialComponentsModule } from '../material-component/material.module'
     FlexLayoutModule,
     ChartistModule,
     MaterialComponentsModule,
-    RouterModule.forChild(RegisterRoutes)
+    ReactiveFormsModule,
+    RouterModule.forChild(RegisterRoutes),
+    FormsModule
+
+
+
   ],
   declarations: [RegisterComponent]
 })
