@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { DatePipe, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AdminRoutes, AppRoutes, UserRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
@@ -51,6 +51,7 @@ import { AuthIntercepter } from 'src/services/auth-intercepter';
         useClass: AuthIntercepter,
         multi: true
     },
+    [DatePipe]
   ],
   bootstrap: [AppComponent]
 })
