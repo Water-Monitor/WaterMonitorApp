@@ -49,10 +49,15 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.fillGraph(7);
+  }
+
+  fillGraph(amountOfDays: number) {
     let fromDate: Date = new Date("2006/01/01");
+    let untilDate: Date = new Date("2006/01/01");
+    untilDate.setDate( untilDate.getDate() + amountOfDays );
     fromDate.setUTCMilliseconds(0);
     console.log(fromDate);
-    let untilDate: Date = new Date("2006/01/07");
     untilDate.setUTCMilliseconds(86399999);
     console.log(untilDate);
 
@@ -94,8 +99,8 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   }
 
   private addRegionConsumption(graphData: WaterUsageDataDto[], divide: number): number[] {
-    let data: number[] = [5000, 5600, 5800, 5700, 5600, 5400, 5100];
-    return data;
+    let data: number[] = [5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100];
+    return data.slice(data.length - graphData.length);
   }
 
   private addMainConsumption(graphData: WaterUsageDataDto[], divide: number): number[] {

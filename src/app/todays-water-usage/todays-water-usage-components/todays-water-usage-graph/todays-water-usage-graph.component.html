@@ -11,10 +11,10 @@
     <mat-card-content>
         <x-chartist [type]="type" [data]="data" [options]="options" [events]="events"></x-chartist>
         <div>
-            <button mat-raised-button color="primary">Last week</button>
-            <button mat-raised-button color="primary">1 Month</button>
-            <button mat-raised-button color="primary">6 Month</button>
-            <button mat-raised-button color="primary">1 Year</button>
+            <button mat-raised-button (click)="fillGraph(7)" color="primary">Last 7 days</button>
+            <button mat-raised-button (click)="fillGraph(31)" color="primary">1 Month</button>
+            <button mat-raised-button disabled color="primary">6 Month</button>
+            <button mat-raised-button disabled color="primary">1 Year</button>
         </div>
     </mat-card-content>
 </mat-card>
