@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
+import { NavigatorService } from 'src/services/navigator.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,23 @@ export class AppComponent {
 
   constructor(
     public authService: AuthenticationService,
+    private navService: NavigatorService
   ) { }
 
   async onLogout() {
     this.authService.logout();
+  }
+
+  onContact() {
+    this.navService.toContactPage();
+  }
+
+  onHome() {
+    this.navService.toHomePage();
+  }
+
+  onAbout() {
+    this.navService.toAboutPage();
   }
 }
 

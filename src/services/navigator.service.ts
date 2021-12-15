@@ -10,10 +10,18 @@ export class NavigatorService {
     ) { }
 
     toHomePage() {
-        this.router.navigate(['/']);
+        this.router.navigate(["home"]);
     }
 
     toLoginPage() {
         this.router.navigate(["login"]);
+    }
+
+    toContactPage() {
+        this.router.navigate(["contact"])
+    }
+
+    toAboutPage() {
+        this.router.navigate(["about"])
     }
 }
