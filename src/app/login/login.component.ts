@@ -23,10 +23,12 @@ export class LoginComponent implements OnInit {
         this.lgnForm = this.formBuilder.group({
             username: ['', [Validators.required, 
                 // Validators.pattern(' ^[a-z0-9_-]$ '), 
-                Validators.minLength(5), Validators.maxLength(21)]],
+                Validators.minLength(5), Validators.maxLength(50),Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
+
+               
             password: ['', [Validators.required, 
                 // Validators.pattern(' ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).$ '), 
-            Validators.minLength(8), Validators.maxLength(200)]]
+            Validators.minLength(8), Validators.maxLength(50)]]
         });
     }
 

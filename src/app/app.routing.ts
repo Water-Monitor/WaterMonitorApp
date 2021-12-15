@@ -14,6 +14,10 @@ export const AppRoutes: Routes = [
         redirectTo: '/todays-water-usage',
         pathMatch: 'full'
       },
+            {
+        path: 'register',
+        loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+      },
       {
         path: 'login',
         loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
@@ -21,15 +25,6 @@ export const AppRoutes: Routes = [
       {
         path: 'logout',
         loadChildren: () => import('./logout/logout.module').then( m => m.LogoutModule)
-      },
-      {
-        path: '',
-        loadChildren:
-          () => import('./material-component/material.module').then(m => m.MaterialComponentsModule)
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
     ]
   }
@@ -39,8 +34,8 @@ export const UserRoutes: Routes = [
   {
     path: '',
     component: FullComponent,
-    // canActivate: [AuthGuardService],
-    // data: { roles: [Role.User, Role.Admin] },
+    canActivate: [AuthGuardService],
+    data: { roles: [Role.User, Role.Admin] },
     children: [
       {
         path: '',
@@ -66,6 +61,10 @@ export const AdminRoutes: Routes = [
         path: '',
         redirectTo: '/dashboard',
         pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule)
       },
     ]
   }
