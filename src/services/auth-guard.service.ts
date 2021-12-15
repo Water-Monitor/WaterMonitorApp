@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let loggedInUser = this.authService.getLoggedInUser();
-    console.log("loggedinuser canActivate: " + loggedInUser.name);
+    /*console.log("loggedinuser canActivate: " + loggedInUser.name);*/
 
     if (loggedInUser != null) {
       console.info("roles: " + loggedInUser.roles[0]);

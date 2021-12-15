@@ -23,6 +23,10 @@ export const AppRoutes: Routes = [
         loadChildren: () => import('./logout/logout.module').then( m => m.LogoutModule)
       },
       {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then( m => m.ProfileModule)
+      },
+      {
         path: '',
         loadChildren:
           () => import('./material-component/material.module').then(m => m.MaterialComponentsModule)
