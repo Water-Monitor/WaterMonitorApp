@@ -26,16 +26,7 @@ export const AppRoutes: Routes = [
         path: 'logout',
         loadChildren: () => import('./logout/logout.module').then( m => m.LogoutModule)
       },
-<<<<<<< HEAD
-      {
-        path: '',
-        loadChildren:
-          () => import('./material-component/material.module').then(m => m.MaterialComponentsModule)
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
+      
       {
         path : 'home',
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
@@ -48,8 +39,6 @@ export const AppRoutes: Routes = [
         path : 'about',
         loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
       },
-=======
->>>>>>> dev
     ]
   }
 ];
@@ -63,7 +52,7 @@ export const UserRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/home',
         pathMatch: 'full'
       },
       {
