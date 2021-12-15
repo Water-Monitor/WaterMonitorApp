@@ -4,11 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Login } from '../models/auth/login';
 import { Role } from '../models/auth/role';
-import { User } from '../models/auth/user';
 import { NavigatorService } from './navigator.service';
 import { PopUpService } from './pop-up.service';
 import { UserService } from './user.service';
 import { Storage } from '@ionic/storage';
+import { Token } from 'src/models/auth/token';
+import { User } from 'src/models/auth/user';
 
 @Injectable({
   providedIn: 'root'
@@ -36,39 +37,49 @@ export class AuthenticationService {
 
   async login(login: Login) {
     // this.popUpService.presentLoading().then(() => {
+    console.info(environment.login_endpoint);
+    this.http.post<any>(environment.login_endpoint, login)
+      .pipe(response => {
+        console.info("login response received: " + JSON.stringify(response));
+        // this.popUpService.dismissLoading();
+        return response;
+      })
+      .subscribe((token) => {
+        let saveToken = new Token(token["Authorization"]);
+        console.log("Token: " + JSON.stringify(saveToken));
+        this.storage.set(environment.token, saveToken).then(() => {          
+          this.userService.getLoggedInUser().subscribe((user) => {
+            if (user != null && user.id > 0) {
+              this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
+                this.authState.next(true);
+                this.navigatorService.toHomePage();
 
-    // this.http.post<User>(environment.login_endpoint, login)
-    //   .pipe(response => {
-    //     console.info("login response received: " + JSON.stringify(response));
-    //     this.popUpService.dismissLoading();
-    //     return response;
-    //   })
-    //   .subscribe((user) => {
-    //     if (user != null && user.id > 0) {
-    //       this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
-    //         console.log(JSON.stringify(user));
-    //         this.userService.setLoggedInUser(user);
-    //         this.authState.next(true);
-    //         this.navigatorService.toHomePage();
-    //       });
-    //     }
-    //     else {
-    //       this.popUpService.presentAlert(`Inlogpoging mislukt`, `De combinatie gebruikersnaam en wachtwoord is onjuist`);
-    //     }
-    //   });
+                console.log("User: " + JSON.stringify(user));
+                this.userService.setLoggedInUserInCache(user);
+              });
+            }
+            else {
+              this.popUpService.presentAlert(`Inlogpoging mislukt`, `De combinatie gebruikersnaam en wachtwoord is onjuist`);
+            }
+          });
+        });
+      });
     // });
-    this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
-      let user = new User(1, "Kees", "kaas", [Role.User]);
-      console.log(JSON.stringify(user));
-      this.userService.setLoggedInUser(user);
-      this.authState.next(true);
-      this.navigatorService.toHomePage();
-    });
+
+    // this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
+    //   let user = new User(1, "Kees", "kaas", [Role.User]);
+    //   console.log(JSON.stringify(user));
+    //   this.userService.setLoggedInUser(user);
+    //   this.authState.next(true);
+    //   this.navigatorService.toHomePage();
+    // });
   }
 
   async logout() {
     console.info("Logging out");
-    await this.storage.remove(AuthenticationService.HAS_LOGGED_IN);
+    await this.storage.set(AuthenticationService.HAS_LOGGED_IN, null);
+    await this.storage.set(environment.token, null);
+    await this.userService.setLoggedInUserInCache(new User(-1, "", "", []));
     this.authState.next(false);
     this.navigatorService.toLoginPage();
   }
@@ -87,7 +98,7 @@ export class AuthenticationService {
 
   getLoggedInUser(): any {
     if (this.isAuthenticated()) {
-      let user = this.userService.getLoggedInUser();
+      let user = this.userService.getLoggedInUserFromCache();
       console.log("loggedinuser: " + user.name);
       return user;
     }

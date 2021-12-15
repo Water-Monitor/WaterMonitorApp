@@ -4,25 +4,19 @@ import { DemoMaterialModule } from '../demo-material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ChartistModule } from 'ng-chartist';
 import { MaterialComponentsModule } from '../material-component/material.module';
-import { LoginComponent } from './login.component';
+import { TabsComponent } from './tabs.component';
+import { TabsRoutes } from './tabs.routing-module';
 import { RouterModule } from '@angular/router';
-import { LoginRoutes } from './login.routing-module';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    FormsModule,    //import here
-    ReactiveFormsModule, //import here
     CommonModule,
     DemoMaterialModule,
     FlexLayoutModule,
     ChartistModule,
     MaterialComponentsModule,
-    RouterModule.forChild(LoginRoutes)
+    RouterModule.forChild(TabsRoutes)
   ],
-  declarations: [
-    LoginComponent,
-  ]
+  declarations: [TabsComponent]
 })
-export class LoginModule { }
+export class TabsModule {}
