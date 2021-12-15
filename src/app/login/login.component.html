@@ -18,12 +18,13 @@
             <h1 color="primary"><img class="png"src="assets/images/unknown.png" width= 50; height=50 >WATER MONITOR<img class="png"src="assets/images/unknown.png" width= 50; height=50 ></h1>
       
             <div class="form-group">
-                <label for="username"><mat-icon class="lock">email</mat-icon>Email</label>
-                <input type="text" formControlName="username"  Placeholder="Email" class="cm-input" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <label for="username"><mat-icon class="lock">email</mat-icon>Username</label>
+                <input type="text" formControlName="username"  Placeholder="Username" class="cm-input" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <p *ngIf="f.username.errors.required">Email is required</p>
-                    <div *ngIf="f.username.errors.maxlength">Email Cant be longer than 50 characters</div>
-                    <div *ngIf="f.username.errors.pattern"> Email is invalid</div>
+                    <p *ngIf="f.username.errors.required">Username is required</p>
+                    <div *ngIf="f.username.errors.maxlength">Username Cant be longer than 21 characters</div>
+                    <div *ngIf="f.email.errors.pattern"> Username invalid only characters & numbers</div>
+                   
                 </div>
 
                 
@@ -42,14 +43,15 @@
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Login
                 </button> 
-                <a href="https://www.facebook.com/"><button mat-raised-button  class="APPSF"><mat-icon class="apps">facebook</mat-icon>Facebook </button></a> 
+                <button mat-raised-button (click)="gotoUrl()" class="APPSF"><mat-icon class="apps">facebook</mat-icon>Facebook </button>
                 
-                <button mat-raised-button class="APPSG"><mat-icon class="apps">Google</mat-icon>Google </button>   
+                <button mat-raised-button (click)="gotoUrl1()"class="APPSG"><mat-icon class="apps">Google</mat-icon>Google </button>   
                       
-                 <button mat-raised-button color="primary" class="btn-primary">
+                 <button mat-raised-button (click)
+                 ="onBackbuttonClick()" color="primary" class="btn-primary">
                     SignUp 
                  </button>
-               
+                 
                
                
                 

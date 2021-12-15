@@ -26,23 +26,16 @@
              <div *ngIf="f.confirmpassword.errors.MustMatch"> Confirm Password and Password do not match</div>
              
           </div>
-        
-
-       
-
-       
-
-      
-    
-  
-   
-    <button mat-raised-button  class="APPSF"><mat-icon class="apps">facebook</mat-icon>Facebook </button> 
-                
-                <button mat-raised-button class="APPSG"><mat-icon class="apps">Google</mat-icon>Google </button>   
+               
                       
                  <button type="submit" mat-raised-button color="primary" class="btn-primary">
                     SignUp 
                  </button>
+                 <button type="submit" mat-raised-button (click)
+                 ="onBackbuttonClick()" color="primary" class="btn-primary">
+                  SignIn 
+               </button>
+
 
 
 

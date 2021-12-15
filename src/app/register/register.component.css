@@ -56,47 +56,16 @@ input.ng-invalid
 
 
 }
-.APPSF
-{
-display: block;
-margin:0 auto;
-background-color:  rgb(7, 157, 226);
-color:white;
-border: 2px solid rgb(7, 157, 226);
-float:left;
-margin-right: 40px;
-
-}
-.APPSG
-{
-display: block;
-margin:0 auto;
-background-color:red;
-color:white;
-border: 2px solid red;
-float:right;
-margin-left: 40px;
 
 
 
-}
-.APPSF,.APPSG
-{
 
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: small;
 
- 
-  box-sizing: border-box;
 
-  width: 50%; 
-  margin: 14px auto;
 
- 
-  
-}
+
+
+
 
 .err
 {
