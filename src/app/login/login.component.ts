@@ -7,6 +7,7 @@ import { Login } from 'src/models/auth/login';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  template:''
 })
 export class LoginComponent implements OnInit {
     lgnForm!: FormGroup;

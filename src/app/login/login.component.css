@@ -1,9 +1,76 @@
-.login-logo {
-  padding: 25px 0 10px 0;
-  min-height: 200px;
-  text-align: center;
+
+
+   /* background: url("https://www.dailyexcelsior.com/wp-content/uploads/2019/10/water-conservation.jpg") no-repeat;
+    background-size: 50%;*/
+    .codehim-form{
+      max-width: 400px;
+      min-height: 400px;
+      box-sizing: border-box;
+
+      box-shadow: 4px 2px 20px white;
+      border-radius: 8px;
+      margin:  20px auto 0 auto;
+      padding: 25px;
+      color: white;
+      background: rgb(7, 157, 226);
+      font-size:large;     
+      
+  }
+  .cm-input{
+      display: block;
+      box-sizing: border-box;
+      padding: 10px;
+      width: 100%; 
+      margin: 14px auto;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      
+      
+  }
+  .cm-input:focus{
+      outline: 0;
+      border-color: #f9cb81;
+      
+  }
+  .cm-input:invalid{
+      border-color: #e41b17;
+    
+     
+  }
+  body{
+    background:  rgb(7, 157, 226);
+  }
+  .fafa-envelope
+  {
+    color:   rgb(7, 157, 226);
+  }
+  .fafa-lock
+  {
+    color:   rgb(7, 157, 226);
+  }
+  h2
+  {
+    text-align: center;
+    font-size:x-large;
+    color: grey;
+   
+
+  
+  }
+  h1{
+    text-align: center;
+  }
+  .png
+  {
+    
+      align-items: center;  
+  }
+  button{
+    display: block;
+    margin:0 auto;
 }
 
-.login-logo img {
-  max-width: 150px;
+p
+{
+  color:red
 }
