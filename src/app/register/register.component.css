@@ -1,0 +1,107 @@
+body
+{
+text-align: center;
+width: 500px;
+border: 15px solid blue;
+padding: 50px;
+margin: 20px;
+}
+form
+{
+  display: inline-block;
+}
+.container
+{
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  align-items: space-around;
+  justify-content: center;
+}
+.OTP
+{
+  display: flex;
+  justify-content: center;
+}
+input.ng-invalid
+{
+  border-radius: 10px solid red;
+
+}
+.err
+{
+  color: red;
+}
+input.ng-valid
+{
+  border-radius: 10px solid green;
+
+}
+input[name="1otp"]
+{
+  margin:10px;
+  height:35px;
+  width: 65px;
+  border: none;
+  border-radius: 5;
+  text-align: center;
+  font-family:arimo ;
+  font-size: 1.2rem;
+}
+input[name="2otp"]
+{
+  margin:10px;
+  height:35px;
+  width: 65px;
+  border: none;
+  border-radius: 5;
+  text-align: center;
+  font-family:arimo ;
+  font-size: 1.2rem;
+
+
+}
+input[name="3otp"]
+{
+  margin:10px;
+  height:35px;
+  width: 65px;
+  border: none;
+  border-radius: 5;
+  text-align: center;
+  font-family:arimo ;
+  font-size: 1.2rem;
+
+
+}
+input[name="4otp"]
+{
+  margin:10px;
+  height:35px;
+  width: 65px;
+  border: none;
+  border-radius: 5;
+  text-align: center;
+  font-family:arimo ;
+  font-size: 1.2rem;
+
+
+}
+input[name="5otp"]
+{
+  margin:10px;
+  height:35px;
+  width: 65px;
+  border: none;
+  border-radius: 5;
+  text-align: center;
+  font-family:arimo ;
+  font-size: 1.2rem;
+
+
+}
+
+
+
+
+
