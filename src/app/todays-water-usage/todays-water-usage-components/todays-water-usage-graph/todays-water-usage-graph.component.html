@@ -1,20 +1,28 @@
 <mat-card class="no-background">
     <mat-card-header>
         <mat-card-title>
-            {{title}}
+            {{graph.title}}
         </mat-card-title>
         <mat-card-subtitle>
-            {{content}}<br />
+            {{graph.content}}<br />
             In total {{divide}}
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         <x-chartist [type]="type" [data]="data" [options]="options" [events]="events"></x-chartist>
+
+        <mat-card *ngIf="displayForecastInText">
+            <mat-card-content>
+                <div *ngFor="let item of forecast">
+                    {{item.day}}: {{item.amount}}
+                </div>
+            </mat-card-content>
+        </mat-card>
+
         <div>
-            <button mat-raised-button (click)="fillGraph(7)" color="primary">Last 7 days</button>
-            <button mat-raised-button (click)="fillGraph(31)" color="primary">1 Month</button>
-            <button mat-raised-button disabled color="primary">6 Month</button>
-            <button mat-raised-button disabled color="primary">1 Year</button>
+            <button mat-raised-button (click)="showUsage(7)" color="primary">Last 7 days</button>
+            <button mat-raised-button (click)="showUsage(31)" color="primary">1 Month</button>
+            <button mat-raised-button (click)="showForecast(7)" color="primary">Forecast</button>
         </div>
     </mat-card-content>
 </mat-card>

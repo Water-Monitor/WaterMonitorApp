@@ -38,6 +38,7 @@ export class TipOfTheDayComponent implements OnInit {
     let regionAvgUsage = this.getAvgPerDay(regionUsages);
     let percOfRegionUsed: number = totalAvgUsage / regionAvgUsage * 100; // Calc pecentage formula: part / whole * 100%
     console.log("percentage is: " + percOfRegionUsed);
+    this.tip.title = "Tip of the Day";
 
     if (totalAvgUsage < 10) {
       // This is extremely low, its not livable

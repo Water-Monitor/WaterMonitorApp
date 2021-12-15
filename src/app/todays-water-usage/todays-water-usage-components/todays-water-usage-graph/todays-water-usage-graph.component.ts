@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { IChartistAnimationOptions, IChartistData, ILineChartOptions } from 'chartist';
+import { IChartistData, ILineChartOptions } from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
 import { TipData } from 'src/models/tipData';
 import { WaterUsageDataDto } from 'src/models/WaterUsageDataDto';
@@ -11,64 +11,71 @@ import { WaterUsageService } from 'src/services/WaterUsage.service';
   styleUrls: ['./todays-water-usage-graph.component.css']
 })
 export class TodaysWaterUsageGraphComponent implements OnInit {
-  title: string = "Todays water usage";
-  content: string = "Last 7 days";
+  graph: { title: string, content: string } = { title: "Todays water usage", content: "Last 7 days" };
+  forecast: { day: string, amount: number }[] = [];
+  forecastDays: string[] = ["Tomorrow", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13", "Day 14", "Day 15", "Day 16", "Day 17", "Day 18", "Day 19"];
   //Make the data easier readable
   divide: number = 10000;
   @Output() outputData = new EventEmitter<TipData>();
+  displayForecastInText: boolean = false;
 
   type: ChartType = 'Line';
+  // Set true to show legends
+  lineChartLegend = true;
   data: IChartistData = {
     labels: [],
     series: []
   };
   options: ILineChartOptions = {
+    showArea: true,
+    showPoint: false,
+    fullWidth: true,
     axisX: {
       showGrid: true,
     },
-    height: 400,
+    height: 200,
   };
   events: ChartEvent = {
     draw: (data) => {
-      if (data.type === 'line') {
+      if (data.type === 'line' || data.type === 'area') {
         data.element.animate({
-          y2: <IChartistAnimationOptions>{
-            dur: '0.5s',
-            from: data.y1,
-            to: data.y2,
-            easing: 'easeOutQuad'
+          d: {
+            begin: 100 * data.index,
+            dur: 1000,
+            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+            to: data.path.clone().stringify(),
+            // easing: Chartist.Svg.Easing.easeOutQuint
           }
         });
       }
     }
   };
-  whatisthis: number[] = [];
 
   constructor(
     private waterUsageService: WaterUsageService,
   ) { }
 
   ngOnInit(): void {
-    this.fillGraph(7);
+    this.showUsage(7);
   }
 
-  fillGraph(amountOfDays: number) {
+  showUsage(amountOfDays: number) {
     let fromDate: Date = new Date("2006/01/01");
-    let untilDate: Date = new Date("2006/01/01");
-    untilDate.setDate( untilDate.getDate() + amountOfDays );
     fromDate.setUTCMilliseconds(0);
     console.log(fromDate);
+    let untilDate: Date = new Date("2006/01/01");
+    untilDate.setDate(untilDate.getDate() + amountOfDays);
     untilDate.setUTCMilliseconds(86399999);
     console.log(untilDate);
 
     this.waterUsageService.getGraph(1, fromDate, untilDate).subscribe((data) => {
-      this.title = "Water usage";
-      this.content = "from: " + fromDate.toDateString() + " until: " + untilDate.toDateString();
-      this.convertDataToGraphData(data, this.divide);
+      this.graph.title = "Water usage";
+      this.graph.content = "from: " + fromDate.toDateString() + " until: " + untilDate.toDateString();
+      this.convertToGraphData(data, this.divide);
     });
   }
 
-  convertDataToGraphData(graphData: WaterUsageDataDto[], divide: number) {
+  convertToGraphData(graphData: WaterUsageDataDto[], divide: number) {
     let series = [];
 
     let totalUsages = this.addTotalConsumption(graphData, divide);
@@ -79,10 +86,50 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
     // series.push(this.addShowerConsumption(graphData, divide));
     // series.push(this.addIrrigationConsumption(graphData, divide));
 
+    this.displayForecastInText = false;
+    // let days: string[] = [];
+    // this.addForecastTextBox(days, totalUsages);
+
     //Tell that there have to be generated a tip!
     this.outputData.emit(new TipData(totalUsages, regionUsages));
 
     let labels = this.getDayLables(graphData);
+
+    this.data = {
+      labels: labels,
+      series: series
+    };
+  }
+
+  showForecast(amountOfDays: number) {
+    let fromDate: Date = new Date("2006/01/01");
+    fromDate.setUTCMilliseconds(0);
+    console.log(fromDate);
+    let untilDate: Date = new Date("2006/01/01");
+    untilDate.setDate(untilDate.getDate() + amountOfDays);
+    untilDate.setUTCMilliseconds(86399999);
+    console.log(untilDate);
+
+    this.waterUsageService.getGraph(1, fromDate, untilDate).subscribe((data) => {
+      this.graph.title = "Forecast";
+      this.graph.content = "For the next 7 days";
+      this.convertForecastToGraphData(data, this.divide);
+    });
+  }
+
+  convertForecastToGraphData(graphData: WaterUsageDataDto[], divide: number) {
+    let series = [];
+
+    let totalUsages = this.addForecastTotalConsumption(graphData, divide);
+    series.push(totalUsages);
+
+    this.displayForecastInText = true;
+    this.addForecastTextBox(this.forecastDays, totalUsages);
+
+    //Tell that there have to be generated a tip!
+    this.outputData.emit(new TipData([], []));
+
+    let labels = this.addForecastDays(graphData);
 
     this.data = {
       labels: labels,
@@ -98,9 +145,21 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
     return data;
   }
 
+  private addForecastTotalConsumption(graphData: WaterUsageDataDto[], divide: number): number[] {
+    let data: number[] = [];
+    for (let singleData of graphData) {
+      data.push(singleData.totalConsumption / divide);
+    }
+    return data;
+  }
+
   private addRegionConsumption(graphData: WaterUsageDataDto[], divide: number): number[] {
     let data: number[] = [5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100];
-    return data.slice(data.length - graphData.length);
+    return data.slice(0, graphData.length);
+  }
+
+  private addForecastDays(graphData: WaterUsageDataDto[]): string[] {
+    return this.forecastDays.slice(0, graphData.length);
   }
 
   private addMainConsumption(graphData: WaterUsageDataDto[], divide: number): number[] {
@@ -141,5 +200,15 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
       data.push(new Date(singleData.datetime).getHours().toString());
     }
     return data;
+  }
+
+  private addForecastTextBox(days: string[], usage: number[]) {
+    let array = [];
+
+    for (let i = 0; i < usage.length; i++) {
+      array.push({ day: days[i], amount: usage[i] });
+    }
+
+    this.forecast = array;
   }
 }
