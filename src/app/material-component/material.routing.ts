@@ -5,7 +5,7 @@ import { GridComponent } from './grid/grid.component';
 import { ListsComponent } from './lists/lists.component';
 import { MenuComponent } from './menu/menu.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { StepperComponent } from './stepper/stepper.component';
+
 import { ExpansionComponent } from './expansion/expansion.component';
 import { ChipsComponent } from './chips/chips.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -38,10 +38,7 @@ export const MaterialRoutes: Routes = [
     path: 'tabs',
     component: TabsComponent
   },
-  {
-    path: 'stepper',
-    component: StepperComponent
-  },
+  
   {
     path: 'expansion',
     component: ExpansionComponent
