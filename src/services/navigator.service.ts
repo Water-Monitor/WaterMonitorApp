@@ -18,10 +18,19 @@ export class NavigatorService {
     }
 
     toContactPage() {
-        this.router.navigate(["contact"])
+        this.router.navigate(["contact"]);
     }
 
     toAboutPage() {
-        this.router.navigate(["about"])
+        this.router.navigate(["about"]);
+    }
+
+    toProfilePage() {
+        this.router.navigate(["profile"]);
+    }
+
+    toSignupPage()
+    {
+        this.router.navigate(["register"]);
     }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { NavigatorService } from 'src/services/navigator.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,6 +29,15 @@ export class AppComponent {
 
   onAbout() {
     this.navService.toAboutPage();
+  }
+
+  onProfile() {
+    this.navService.toProfilePage();
+  }
+
+  onSettings() {
+    console.warn("Settings page is not implemented yet");
+    
   }
 }
 
