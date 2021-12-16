@@ -16,4 +16,8 @@ export class NavigatorService {
     toLoginPage() {
         this.router.navigate(["login"]);
     }
+    toSignupPage()
+    {
+        this.router.navigate(["register"])
+    }
 }

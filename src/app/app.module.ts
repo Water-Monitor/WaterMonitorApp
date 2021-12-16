@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DatePipe, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AdminRoutes, AppRoutes, UserRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
@@ -18,6 +18,8 @@ import { DemoMaterialModule } from './demo-material-module';
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 import { IonicStorageModule } from '@ionic/storage';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { AuthIntercepter } from 'src/services/auth-intercepter';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,14 @@ import { IonicStorageModule } from '@ionic/storage';
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy
-    }
+    },
+    AuthenticationService,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthIntercepter,
+        multi: true
+    },
+    [DatePipe]
   ],
   bootstrap: [AppComponent]
 })
