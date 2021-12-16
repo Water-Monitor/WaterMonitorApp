@@ -11,8 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    FormsModule,    //import here
-    ReactiveFormsModule, //import here
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     DemoMaterialModule,
     FlexLayoutModule,
