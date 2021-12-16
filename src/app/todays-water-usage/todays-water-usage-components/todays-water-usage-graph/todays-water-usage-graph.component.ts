@@ -30,6 +30,7 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
     showArea: true,
     showPoint: false,
     fullWidth: true,
+    // low: 0,
     axisX: {
       showGrid: true,
     },
@@ -60,10 +61,10 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   }
 
   showUsage(amountOfDays: number) {
-    let fromDate: Date = new Date("2006/01/01");
+    let fromDate: Date = new Date("2006/01/02");
     fromDate.setUTCMilliseconds(0);
     console.log(fromDate);
-    let untilDate: Date = new Date("2006/01/01");
+    let untilDate: Date = new Date("2006/01/02");
     untilDate.setDate(untilDate.getDate() + amountOfDays - 1);
     untilDate.setUTCMilliseconds(86399999);
     console.log(untilDate);
