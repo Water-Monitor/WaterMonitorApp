@@ -5,7 +5,6 @@
 
 export const environment = {
   production: false,
-  get_water_usage_endpoint: "http://localhost:9092/water-monitor-service/water-usage/v1.0",
   get_graph_endpoint: "http://localhost:9092/water-monitor-service/graph/v1.0?fromDate=@fromDate&untilDate=@untilDate",
   get_prediction_endpoint: "http://localhost:9092/water-monitor-service/prediction/next-week/v1.0?fromDate=@fromDate&untilDate=@untilDate",
   login_endpoint: "http://localhost:9092/user-service/login",

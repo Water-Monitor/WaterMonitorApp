@@ -16,25 +16,7 @@ export class WaterUsageService {
     private dateTransformer: DateTransformer,
   ) { }
 
-  getWaterUsage(userId: number): Observable<WaterUsageDto> {
-    return new Observable((observer) => {
-      console.info("getWaterUsage request");
-      this.http.get<any>(environment.get_water_usage_endpoint)
-        .pipe(
-          map(response => {
-            console.info("getWaterUsage data received: " + JSON.stringify(response));
-            let result = response['data'];
-            return result;
-          }),
-          catchError(() => { console.error("ERROR getWaterUsage"); return []; })
-        ).subscribe((result) => {
-          observer.next(result);
-        });
-
-    });
-  }
-
-  getGraph(userId: number, fromDate: Date, untilDate: Date): Observable<WaterUsageDataDto[]> {
+  getWaterUsage(userId: number, fromDate: Date, untilDate: Date): Observable<WaterUsageDataDto[]> {
     return new Observable((observer) => {
       console.info("getGraph request");
       let endpoint = environment.get_graph_endpoint;      

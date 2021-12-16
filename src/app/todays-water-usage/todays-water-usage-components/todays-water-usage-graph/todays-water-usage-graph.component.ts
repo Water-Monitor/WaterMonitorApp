@@ -69,7 +69,7 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
     untilDate.setUTCMilliseconds(86399999);
     console.log(untilDate);
 
-    this.waterUsageService.getGraph(1, fromDate, untilDate).subscribe((data) => {
+    this.waterUsageService.getWaterUsage(1, fromDate, untilDate).subscribe((data) => {
       this.graph.title = "Water usage";
       this.graph.content = "from: " + fromDate.toDateString() + " until: " + untilDate.toDateString();
       this.convertToGraphData(data, this.divide);
