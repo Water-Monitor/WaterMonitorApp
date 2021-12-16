@@ -46,6 +46,10 @@ export const UserRoutes: Routes = [
         path: 'todays-water-usage',
         loadChildren: () => import('./todays-water-usage/todays-water-usage.module').then(m => m.TodaysWaterUsageModule)
       },
+      {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then( m => m.ProfileModule)
+      },
     ]
   }
 ];
