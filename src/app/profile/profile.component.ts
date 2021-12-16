@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;
@@ -41,12 +41,12 @@ export class ProfileComponent implements OnInit{
     console.log(this.form.value);
 
     // reset alerts on submit
-   // this.alertService.clear();
+    // this.alertService.clear();
 
     // stop here if form is invalid
     if (this.form.invalid) {
       console.log("triggered");
-        return;
+      return;
     }
 
     this.loading = true;
@@ -63,5 +63,5 @@ export class ProfileComponent implements OnInit{
                 this.loading = false;
             }
         });*/
-}
+  }
 }
