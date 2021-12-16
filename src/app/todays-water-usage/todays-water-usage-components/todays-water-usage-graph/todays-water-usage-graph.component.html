@@ -1,11 +1,11 @@
 <mat-card class="no-background">
     <mat-card-header>
         <mat-card-title>
-            {{graph.title}}
+            {{graph?.title}}
         </mat-card-title>
         <mat-card-subtitle>
-            {{graph.content}}<br />
-            In total {{divide}}
+            {{graph?.content}}<br />
+            In total liters
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -14,7 +14,7 @@
         <mat-card *ngIf="displayForecastInText">
             <mat-card-content>
                 <div *ngFor="let item of forecast">
-                    {{item.day}}: {{item.amount}}
+                    {{item?.day}}: {{item?.amount}}
                 </div>
             </mat-card-content>
         </mat-card>

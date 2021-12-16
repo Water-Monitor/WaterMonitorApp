@@ -8,15 +8,12 @@ import { WaterUsageService } from 'src/services/WaterUsage.service';
   styleUrls: ['./todays-water-usage.component.css']
 })
 export class TodaysWaterUsageComponent implements OnInit {
-  waterUsage: number = 100;
   outputData?: TipData;
 
   constructor(
-    private waterUsageService: WaterUsageService,
     ) { }
 
   ngOnInit(): void {
-    this.waterUsageService.getWaterUsage(1).subscribe((data) => { this.waterUsage = data.amount });
   }
 
   sendDataToTip(tipData: TipData) {

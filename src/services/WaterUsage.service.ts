@@ -56,4 +56,27 @@ export class WaterUsageService {
 
     });
   }
+
+  getPrediction(userId: number, fromDate: Date, untilDate: Date): Observable<WaterUsageDataDto[]> {
+    return new Observable((observer) => {
+      console.info("getPrediction request");
+      let endpoint = environment.get_prediction_endpoint;      
+      endpoint = endpoint.replace("@fromDate", this.dateTransformer.transformDate(fromDate));
+      endpoint = endpoint.replace("@untilDate", this.dateTransformer.transformDate(untilDate));
+      console.log("request is: " + endpoint);
+      
+      this.http.get<any>(endpoint)
+        .pipe(
+          map(response => {
+            console.info("getPrediction data received: " + JSON.stringify(response));
+            let result = response['data']['predictions'];
+            return result;
+          }),
+          catchError(() => { console.error("ERROR getPrediction"); return []; })
+        ).subscribe((result) => {
+          observer.next(result);
+        });
+
+    });
+  }
 }

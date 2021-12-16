@@ -15,7 +15,7 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   forecast: { day: string, amount: number }[] = [];
   forecastDays: string[] = ["Tomorrow", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13", "Day 14", "Day 15", "Day 16", "Day 17", "Day 18", "Day 19"];
   //Make the data easier readable
-  divide: number = 10000;
+  divide: number = 1000; //convert mililiters to liters
   @Output() outputData = new EventEmitter<TipData>();
   displayForecastInText: boolean = false;
 
@@ -64,7 +64,7 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
     fromDate.setUTCMilliseconds(0);
     console.log(fromDate);
     let untilDate: Date = new Date("2006/01/01");
-    untilDate.setDate(untilDate.getDate() + amountOfDays);
+    untilDate.setDate(untilDate.getDate() + amountOfDays - 1);
     untilDate.setUTCMilliseconds(86399999);
     console.log(untilDate);
 
@@ -102,15 +102,15 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   }
 
   showForecast(amountOfDays: number) {
-    let fromDate: Date = new Date("2006/01/01");
+    let fromDate: Date = new Date("2006/01/08");
     fromDate.setUTCMilliseconds(0);
     console.log(fromDate);
-    let untilDate: Date = new Date("2006/01/01");
-    untilDate.setDate(untilDate.getDate() + amountOfDays);
+    let untilDate: Date = new Date("2006/01/08");
+    untilDate.setDate(untilDate.getDate() + amountOfDays - 1);
     untilDate.setUTCMilliseconds(86399999);
     console.log(untilDate);
 
-    this.waterUsageService.getGraph(1, fromDate, untilDate).subscribe((data) => {
+    this.waterUsageService.getPrediction(1, fromDate, untilDate).subscribe((data) => {
       this.graph.title = "Forecast";
       this.graph.content = "For the next 7 days";
       this.convertForecastToGraphData(data, this.divide);
@@ -154,8 +154,12 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   }
 
   private addRegionConsumption(graphData: WaterUsageDataDto[], divide: number): number[] {
-    let data: number[] = [5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100, 5000, 5600, 5800, 5700, 5600, 5400, 5100];
-    return data.slice(0, graphData.length);
+    let mockedData: number[] = [500000, 560000, 580000, 570000, 560000, 540000, 510000, 500000, 560000, 580000, 570000, 560000, 540000, 510000,500000, 560000, 580000, 570000, 560000, 540000, 510000,500000, 560000, 580000, 570000, 560000, 540000, 510000,500000, 560000, 580000, 570000, 560000, 540000, 510000,500000, 560000, 580000, 570000, 560000, 540000, 510000];
+    let data: number[] = [];
+    for (let singleData of mockedData.slice(0, graphData.length)) {
+      data.push(singleData / divide);
+    }
+    return data;
   }
 
   private addForecastDays(graphData: WaterUsageDataDto[]): string[] {

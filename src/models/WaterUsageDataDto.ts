@@ -7,13 +7,17 @@ export class WaterUsageDataListDto {
 }
 
 export class WaterUsageDataDto {
-	id: number;
+    id: number;
     houseId: number;
     timestamp: number;
     datetime: Date;
+    //in mililiters
     totalConsumption: number;
+    //in mililiters
     mainSensor: number;
+    //in mililiters
     showerSensor: number;
+    //in mililiters
     irrigationSensor: number;
 
     constructor(id: number, houseId: number, timestamp: number, datetime: Date, totalConsumption: number, mainSensor: number, showerSensor: number, irrigationSensor: number) {
