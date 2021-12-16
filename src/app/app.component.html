@@ -7,7 +7,7 @@
     <app-spinner></app-spinner>
     <div>
         <mat-toolbar color="primary">
-            <!-- <div class="navbar-header">
+            <div class="navbar-header">
                 <a class="navbar-brand" href="index.html">
                     <b>
                         <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo">
@@ -16,9 +16,15 @@
                     <span fxShow="false" fxShow.gt-xs>
                      <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo">
                      <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage">
+                     
+                    
+                     
+                     
                     </span>
                  </a>
-            </div> -->
+                      
+                  
+            </div> 
             <!-- <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
                 <mat-icon>menu</mat-icon>
             </button> -->
@@ -26,11 +32,20 @@
             <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5"> <img src="assets/images/users/1.jpg"
                     alt="user" class="profile-pic"> </button>
             <mat-menu #profile="matMenu" class="mymegamenu">
-                <button mat-menu-item>
+                <button mat-menu-item (click)="onHome()">
+                    <mat-icon>home</mat-icon> Home
+                </button>
+                <button mat-menu-item (click)="onSettings()">
                     <mat-icon>settings</mat-icon> Settings
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="onProfile()">
                     <mat-icon>account_box</mat-icon> Profile
+                </button>
+                <button mat-menu-item (click)="onContact()">
+                    <mat-icon>contact_support</mat-icon> Contact
+                </button>
+                <button mat-menu-item (click)="onAbout()">
+                    <mat-icon>info</mat-icon> About Us
                 </button>
                 <button mat-menu-item (click)="onLogout()">
                     <mat-icon>exit_to_app</mat-icon> Sign Out
