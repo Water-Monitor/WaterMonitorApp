@@ -10,10 +10,31 @@ export class NavigatorService {
     ) { }
 
     toHomePage() {
-        this.router.navigate(['/']);
+        this.router.navigate(["home"]);
     }
 
     toLoginPage() {
         this.router.navigate(["login"]);
+    }
+
+    toContactPage() {
+        this.router.navigate(["contact"]);
+    }
+
+    toAboutPage() {
+        this.router.navigate(["about"]);
+    }
+
+    toProfilePage() {
+        this.router.navigate(["profile"]);
+    }
+
+    toSignupPage()
+    {
+        this.router.navigate(["register"]);
+    }
+
+    toWaterUsagePage() {
+        this.router.navigate(["todays-water-usage"]);
     }
 }

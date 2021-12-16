@@ -1,36 +1,62 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Login } from '../../models/auth/login';
-import { AuthenticationService } from '../../services/authentication.service';
-
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { Login } from 'src/models/auth/login';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 @Component({
-  selector: 'app-login',
-  templateUrl: 'login.component.html',
-  styleUrls: ['./login.component.css'],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    template: ''
 })
-export class LoginComponent {
-  login: Login = { username: '', password: '' };
-  submitted = false;
+export class LoginComponent implements OnInit {
+    lgnForm!: FormGroup;
+    submitted = false;
 
-  constructor(
-    public authService: AuthenticationService,
-  ) { }
+    constructor(
+        private formBuilder: FormBuilder,
+        private authService: AuthenticationService,
+        private _router: Router,
+        @Inject(DOCUMENT) private document: Document
+    ) { }
 
-  // async onLogin(form: NgForm) {
-  //   this.submitted = true;
+    gotoUrl(): void {
+        this.document.location.href = 'https://www.facebook.com/';
+    }
+    gotoUrl1(): void {
+        this.document.location.href = 'https://accounts.google.com/AddSession/signinchooser?hl=en&continue=https%3A%2F%2Fmail.google.com&service=mail&ec=GAlAFw&flowName=GlifWebSignIn&flowEntry=AddSession';
+    }
 
-  //   if (form.valid) {
-  //       this.authService.login(this.login);
-  //   }
-  // }
+    onBackbuttonClick(): void {
+        this._router.navigate(['/register']);
+    }
 
-  async onLogin() {
-    this.submitted = true;
+    ngOnInit() {
+        this.lgnForm = this.formBuilder.group({
+            username: ['', [Validators.required,
+            // Validators.pattern(' ^[a-z0-9_-]$ '), 
+            Validators.minLength(5), Validators.maxLength(21), Validators.pattern(/^(?:[a-zA-Z0-9\s]+)?$/)]],
 
-    this.authService.login(this.login);
-  }
+            password: ['', [Validators.required,
+            // Validators.pattern(' ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).$ '), 
+            Validators.minLength(8), Validators.maxLength(50)]]
+        });
+    }
 
-  onSignup() {
-    // this.router.navigateByUrl('/signup');
-  }
+    // convenience getter for easy access to form fields
+    get f() { return this.lgnForm.controls; }
+
+    onSubmit() {
+        this.submitted = true;
+        console.log(this.lgnForm.value);
+
+        // stop here if form is invalid
+        if (this.lgnForm.invalid) {
+            console.log("triggered");
+            return;
+        }
+
+        this.authService.login(new Login(this.f.username.value, this.f.password.value));
+    }
 }

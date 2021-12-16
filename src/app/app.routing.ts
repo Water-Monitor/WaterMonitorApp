@@ -11,8 +11,12 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/todays-water-usage',
         pathMatch: 'full'
+      },
+            {
+        path: 'register',
+        loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
       },
       {
         path: 'login',
@@ -22,14 +26,18 @@ export const AppRoutes: Routes = [
         path: 'logout',
         loadChildren: () => import('./logout/logout.module').then( m => m.LogoutModule)
       },
+      
       {
-        path: '',
-        loadChildren:
-          () => import('./material-component/material.module').then(m => m.MaterialComponentsModule)
+        path : 'home',
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
-        path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+        path : 'contact',
+        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+      },
+      {
+        path : 'about',
+        loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
       },
     ]
   }
@@ -40,16 +48,20 @@ export const UserRoutes: Routes = [
     path: '',
     component: FullComponent,
     canActivate: [AuthGuardService],
-    // data: { roles: [Role.User, Role.Admin] },
+    data: { roles: [Role.User, Role.Admin] },
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/home',
         pathMatch: 'full'
       },
       {
         path: 'todays-water-usage',
         loadChildren: () => import('./todays-water-usage/todays-water-usage.module').then(m => m.TodaysWaterUsageModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then( m => m.ProfileModule)
       },
     ]
   }
@@ -66,6 +78,10 @@ export const AdminRoutes: Routes = [
         path: '',
         redirectTo: '/dashboard',
         pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule)
       },
     ]
   }

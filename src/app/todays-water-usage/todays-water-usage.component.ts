@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TipData } from 'src/models/tipData';
 import { WaterUsageService } from 'src/services/WaterUsage.service';
 
 @Component({
@@ -8,10 +9,17 @@ import { WaterUsageService } from 'src/services/WaterUsage.service';
 })
 export class TodaysWaterUsageComponent implements OnInit {
   waterUsage: number = 100;
+  outputData?: TipData;
 
-  constructor(private waterUsageService: WaterUsageService) { }
+  constructor(
+    private waterUsageService: WaterUsageService,
+    ) { }
 
   ngOnInit(): void {
     this.waterUsageService.getWaterUsage(1).subscribe((data) => { this.waterUsage = data.amount });
+  }
+
+  sendDataToTip(tipData: TipData) {
+    this.outputData = tipData;
   }
 }
