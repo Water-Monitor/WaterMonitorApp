@@ -1,0 +1,44 @@
+<body>
+   <form (ngSubmit)="onSubmit()" class="codehim-form" [formGroup]="registerForm" color="primary">
+      <h1 color="primary"><img class="png" src="assets/images/unknown.png" width=50; height=50>WATER MONITOR<img
+            class="png" src="assets/images/unknown.png" width=50; height=50>
+         <br>--------SIGN UP--------
+      </h1>
+
+      <label for="username">
+         <mat-icon class="lock">email</mat-icon>Email
+      </label>
+      <input type="email" formControlName="email" class="input" placeholder="Email">
+      <div *ngIf="submitted && f.email.errors" class="err">
+         <div *ngIf="f.email.errors.required"> Email is required</div>
+         <div *ngIf="f.email.errors.maxlength">Email Cant be longer than 50 characters</div>
+         <div *ngIf="f.email.errors.pattern"> Email is invalid</div>
+
+      </div>
+      <label for="password">
+         <mat-icon class="lock">https</mat-icon>Password
+      </label>
+      <input type="password" formControlName="password" class="input" placeholder="Password">
+      <div *ngIf="submitted && f.password.errors" class="err">
+         <div *ngIf="f.password.errors.required">Password is required</div>
+         <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+         <div *ngIf="f.password.errors.maxlength">Password must be less than 21 characters</div>
+      </div>
+      <label for="password">
+         <mat-icon class="lock">https</mat-icon>Confirm Password
+      </label>
+      <input type="password" formControlName="confirmpassword" class="input" placeholder=" Confirm Password">
+      <div *ngIf="submitted && f.confirmpassword.errors" class="err">
+         <div *ngIf="f.confirmpassword.errors.required"> Confirm Password is required</div>
+         <div *ngIf="f.password.errors.maxlength">Password must be less than 21 characters</div>
+         <div *ngIf="f.confirmpassword.errors.MustMatch"> Confirm Password and Password do not match</div>
+      </div>
+      <button type="submit" mat-raised-button color="primary" class="btn-primary">
+         SignUp
+      </button>
+      <button type="submit" mat-raised-button (click)="onBackbuttonClick()" color="primary" class="btn-primary">
+         SignIn
+      </button>
+      <!-- ccc -->
+   </form>
+</body>

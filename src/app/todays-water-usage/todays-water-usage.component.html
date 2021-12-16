@@ -1,4 +1,2 @@
-<app-todays-water-usage-graph></app-todays-water-usage-graph>
-<app-tip-of-the-day></app-tip-of-the-day>
-
-Today's water usage is: {{waterUsage}}
+<app-todays-water-usage-graph (outputData)="sendDataToTip($event)"></app-todays-water-usage-graph>
+<app-tip-of-the-day [outputData]="outputData"></app-tip-of-the-day>

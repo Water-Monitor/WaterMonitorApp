@@ -47,7 +47,7 @@ export class AuthenticationService {
       .subscribe((token) => {
         let saveToken = new Token(token["Authorization"]);
         console.log("Token: " + JSON.stringify(saveToken));
-        this.storage.set(environment.token, saveToken).then(() => {          
+        this.storage.set(environment.token, saveToken).then(() => {
           this.userService.getLoggedInUser().subscribe((user) => {
             if (user != null && user.id > 0) {
               this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
@@ -64,15 +64,6 @@ export class AuthenticationService {
           });
         });
       });
-    // });
-
-    // this.storage.set(AuthenticationService.HAS_LOGGED_IN, true).then(() => {
-    //   let user = new User(1, "Kees", "kaas", [Role.User]);
-    //   console.log(JSON.stringify(user));
-    //   this.userService.setLoggedInUser(user);
-    //   this.authState.next(true);
-    //   this.navigatorService.toHomePage();
-    // });
   }
 
   async logout() {
