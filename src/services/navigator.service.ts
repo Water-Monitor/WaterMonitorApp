@@ -33,4 +33,8 @@ export class NavigatorService {
     {
         this.router.navigate(["register"]);
     }
+
+    toWaterUsagePage() {
+        this.router.navigate(["todays-water-usage"]);
+    }
 }

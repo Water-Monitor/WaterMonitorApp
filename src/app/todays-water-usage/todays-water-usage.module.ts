@@ -6,7 +6,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ChartistModule } from 'ng-chartist';
 import { TodaysWaterUsageComponent } from './todays-water-usage.component';
 import { TodaysWaterUsageRoutes } from './todays-water-usage.routing';
-import { MaterialComponentsModule } from '../material-component/material.module';
 import { TipOfTheDayComponent } from './todays-water-usage-components/tip-of-the-day/tip-of-the-day.component';
 import { TodaysWaterUsageGraphComponent } from './todays-water-usage-components/todays-water-usage-graph/todays-water-usage-graph.component';
 
@@ -16,7 +15,6 @@ import { TodaysWaterUsageGraphComponent } from './todays-water-usage-components/
     DemoMaterialModule,
     FlexLayoutModule,
     ChartistModule,
-    MaterialComponentsModule,
     RouterModule.forChild(TodaysWaterUsageRoutes)
   ],
   declarations: [TodaysWaterUsageComponent, TipOfTheDayComponent, TodaysWaterUsageGraphComponent]

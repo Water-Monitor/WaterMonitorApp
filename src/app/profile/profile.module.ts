@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DemoMaterialModule } from '../demo-material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ChartistModule } from 'ng-chartist';
-import { MaterialComponentsModule } from '../material-component/material.module';
 import { ProfileComponent } from './profile.component';
 import { RouterModule } from '@angular/router';
 import { ProfileRoutes } from './profile.routing-module';
@@ -18,7 +17,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     DemoMaterialModule,
     FlexLayoutModule,
     ChartistModule,
-    MaterialComponentsModule,
     RouterModule.forChild(ProfileRoutes)
   ],
   declarations: [
