@@ -1,31 +1,38 @@
+<div class="container has-text-centered">
+    <h1>
+        <img class="logo" src="assets/images/unknown.png">
+        WELCOME
+        <img class="logo" src="assets/images/unknown.png">
+    </h1>
+</div>
 
-    <div class="container has-text-centered">
-   <h1 color="primary"><img class="png" src="assets/images/unknown.png" width=50; height=50>WELCOME
-        <img class="png" src="assets/images/unknown.png" width=50; height=50></h1>
-     
-    </div>
-
-    <button class="btn-primary" mat-menu-item (click)="onHome()">
-      <mat-icon class="btn-primary1">home</mat-icon>Home
-  </button>
-  <button class="btn-primary" mat-menu-item (click)="onWaterUsage()">
-      <mat-icon class="btn-primary1">home</mat-icon>WaterUsage
-  </button>
-  <button class="btn-primary" mat-menu-item (click)="onSettings()">
-      <mat-icon class="btn-primary1">settings</mat-icon>Settings
-  </button>
-  <button class="btn-primary" mat-menu-item (click)="onProfile()">
-      <mat-icon class="btn-primary1">account_box</mat-icon>Profile
-  </button>
-  <button class="btn-primary" mat-menu-item (click)="onContact()">
-      <mat-icon class="btn-primary1">contact_support</mat-icon>Contact
-  </button>
-  <button class="btn-primary" mat-menu-item (click)="onAbout()">
-      <mat-icon class="btn-primary1">info</mat-icon>About Us
-  </button>
-  <button class="btn-primary"mat-menu-item (click)="onLogout()"><!--*ngIf="isAuthenticated"-->
-      <mat-icon n class="btn-primary1">exit_to_app</mat-icon>Sign Out
-  </button>
-  <button class="btn-primary"mat-menu-item (click)="onLogin()"><!--*ngIf="!isAuthenticated"-->
-      <mat-icon n class="btn-primary1">exit_to_app</mat-icon>Sign In
-  </button>
+<button mat-raised-button class="btn-primary" color="primary" (click)="onWaterUsage()">
+    <mat-icon>home</mat-icon>
+    WaterUsage
+</button>
+<button mat-raised-button class="btn-primary" color="primary" (click)="onProfile()">
+    <mat-icon>account_box</mat-icon>
+    Profile
+</button>
+<button mat-raised-button class="btn-primary" color="primary" (click)="onSettings()">
+    <mat-icon>settings</mat-icon>
+    Settings
+</button>
+<button mat-raised-button class="btn-primary" color="primary" (click)="onAbout()">
+    <mat-icon>info</mat-icon>
+    About Us
+</button>
+<button mat-raised-button class="btn-primary" color="primary" (click)="onContact()">
+    <mat-icon>contact_support</mat-icon>
+    Contact
+</button>
+<button mat-raised-button class="btn-primary" color="primary" (click)="onLogout()">
+    <!--*ngIf="isAuthenticated"-->
+    <mat-icon>exit_to_app</mat-icon>
+    Sign Out
+</button>
+<button mat-raised-button class="btn-primary" color="primary" (click)="onLogin()">
+    <!--*ngIf="!isAuthenticated"-->
+    <mat-icon>exit_to_app</mat-icon>
+    Sign In
+</button>
