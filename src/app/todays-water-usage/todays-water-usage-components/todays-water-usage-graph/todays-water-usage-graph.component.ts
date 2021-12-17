@@ -61,11 +61,11 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   }
 
   showUsage(amountOfDays: number) {
-    let fromDate: Date = new Date("2006/01/02");
+    let fromDate: Date = new Date("2006/02/05");
+    fromDate.setDate(fromDate.getDate() - amountOfDays + 1);
     fromDate.setUTCMilliseconds(0);
     console.log(fromDate);
-    let untilDate: Date = new Date("2006/01/02");
-    untilDate.setDate(untilDate.getDate() + amountOfDays - 1);
+    let untilDate: Date = new Date("2006/02/05");
     untilDate.setUTCMilliseconds(86399999);
     console.log(untilDate);
 
@@ -103,10 +103,10 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   }
 
   showForecast(amountOfDays: number) {
-    let fromDate: Date = new Date("2006/01/08");
+    let fromDate: Date = new Date("2006/02/06");
     fromDate.setUTCMilliseconds(0);
     console.log(fromDate);
-    let untilDate: Date = new Date("2006/01/08");
+    let untilDate: Date = new Date("2006/02/06");
     untilDate.setDate(untilDate.getDate() + amountOfDays - 1);
     untilDate.setUTCMilliseconds(86399999);
     console.log(untilDate);
@@ -155,7 +155,13 @@ export class TodaysWaterUsageGraphComponent implements OnInit {
   }
 
   private addRegionConsumption(graphData: WaterUsageDataDto[], divide: number): number[] {
-    let mockedData: number[] = [500000, 560000, 580000, 570000, 560000, 540000, 510000, 500000, 560000, 580000, 570000, 560000, 540000, 510000,500000, 560000, 580000, 570000, 560000, 540000, 510000,500000, 560000, 580000, 570000, 560000, 540000, 510000,500000, 560000, 580000, 570000, 560000, 540000, 510000,500000, 560000, 580000, 570000, 560000, 540000, 510000];
+    let mockedData: number[] = [
+      647000, 	655000, 	675000, 	675000, 	655000, 	646000, 	637000,
+      645000, 	667000, 	685000, 	687000, 	675000, 	666000, 	636000,
+      637000, 	656000, 	675000, 	656000, 	655000, 	646000, 	636000,
+      626000, 	637000, 	656000, 	665000, 	645000, 	637000, 	645000,
+      637000, 	645000, 	656000,
+    ];
     let data: number[] = [];
     for (let singleData of mockedData.slice(0, graphData.length)) {
       data.push(singleData / divide);
