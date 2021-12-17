@@ -13,10 +13,7 @@
     font-size:large;     
     
 }
-.message
-{
-  text-align: center;
-}
+
 h1{
     display: block;
     box-sizing: border-box;
@@ -47,8 +44,6 @@ h1{
     margin: 14px auto;
     border-radius: 50px;
     border: 2px solid rgb(7, 157, 226);
-    
-    
 }
 .btn-primary{
     display: block;
