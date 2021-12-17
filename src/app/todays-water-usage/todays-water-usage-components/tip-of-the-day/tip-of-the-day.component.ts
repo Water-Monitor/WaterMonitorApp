@@ -58,11 +58,11 @@ export class TipOfTheDayComponent implements OnInit {
       // Slightly less than average
       this.tip.content = "You managed to use less water than the average in your area! Great job!";
     }
-    else if (percOfRegionUsed > 90 && percOfRegionUsed <= 110) {
+    else if (percOfRegionUsed > 90 && percOfRegionUsed <= 100) {
       // Average
       this.tip.content = "Better use not too much water for today anymore, if you want to stay below average.";
     }
-    else if (percOfRegionUsed > 110 && percOfRegionUsed <= 120) {
+    else if (percOfRegionUsed > 100 && percOfRegionUsed <= 120) {
       // A little bit above average
       this.tip.content = "You are almost as low as the average consumption in your local area! Check out the areas to see where/how you can save water.";
     }
